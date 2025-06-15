@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LNCT Group</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --text-dark: #1f2937;
+      --text-light: #374151;
+      --background: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body.dark {
+  background: #111827;
+  color: #f9fafb;
+}
+body.dark .card,
+body.dark .footer,
+body.dark .about-text {
+  background: #1f2937;
+  color: #f9fafb;
+}
+body.dark .btn-primary {
+  background: #2563eb;
+  color: white;
+}
+    
+    /* Apply this at the TOP of your main CSS */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;  /* KEY: prevents rightward overflow */
+  box-sizing: border-box;
+  width: 100%;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+    
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--background);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+
+         
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+
+  background: white; /* Optional: for visibility */
+  z-index: 1000;      /* Ensures it stays on top */
+  
+}
+    
+    
+    .nav-item, .nav-subitem {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .sub-dropdown {
+    max-height: 300px;  /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .sub-dropdown::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sub-dropdown::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+
+  .sub-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.dropdown-toggle, .sub-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  color: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-content,
+.sub-dropdown {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-left: 2px solid #007BFF;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
+
+.dropdown-content a,
+.sub-dropdown a {
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-content a:hover,
+.sub-dropdown a:hover {
+  background: #f0f0f0;
+}
+
+.nav-item.open > .dropdown-content,
+.nav-subitem.open > .sub-dropdown {
+  display: flex;
+}
+
+.nav-subitem {
+  margin-top: 0.4rem;
+}
+    /* Main nav dropdown container */
+/* Container styles */
+.nav-item.dropdown {
+  position: relative;
+}
+
+/* Main mega menu (initially hidden) */
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  width: max-content;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Show mega menu when parent has class "open" */
+.nav-item.dropdown.open .mega-menu {
+  display: flex;
+}
+
+/* Each column inside mega menu */
+.mega-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toggle buttons */
+button.main-dropdown-toggle,
+button.sub-dropdown-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+/* Dropdown link style */
+.mega-column a {
+  padding: 0.25rem 0;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.mega-column a:hover {
+  color: #0077cc;
+  transform: translateX(4px);
+}
+
+/* Sub-menu: initially hidden */
+.sub-dropdown-menu {
+  display: none;
+  margin-left: 1rem;
+  padding-top: 0.25rem;
+}
+
+/* Show sub-menu when parent has class "open" */
+.sub-dropdown.open .sub-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 100px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--text-dark);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links.active{
+      display: flex;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 0%;
+      background: var(--primary-color);
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap:5px;
+      
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: var(--text-dark);
+      margin-bottom: 5px;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        background: var(--background);
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+      .logo-pop {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  animation: popLogo 0.6s ease-out forwards;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.hero-content h1,
+.hero-content p,
+.hero-content a {
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+  animation-delay: 0.7s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popLogo {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+main{
+  padding-top: 80px;
+}
+
+.hero {
+  position: relative;
+  max-width: 900px;
+  margin: 4rem auto 5rem auto;
+  padding: 6rem 3rem;
+  text-align: center;
+  color: white;
+  user-select: none;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 50px rgb(37 99 235 / 0.4);
+  overflow: hidden;
+}
+
+/* Slideshow background layer */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: bgSlide 25s infinite ease-in-out;
+  filter: brightness(0.6); /* Controls brightness to enhance text readability */
+  border-radius: 1.5rem;
+}
+
+/* Text layer stays on top */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Background slideshow animation */
+  @keyframes bgSlide {
+  0%   { background-image: url('a.jpg'); }
+  25%  { background-image: url('b.jpg'); }
+  50%  { background-image: url('c.jpg'); }
+  75%  { background-image: url('d.jpg'); }
+  100% { background-image: url('e.jpg'); }
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  font-family: 'Segoe UI Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  letter-spacing: -0.03em;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  margin-bottom: 3rem;
+  color: #bfdbfecc;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+    .btn-primary {
+      
+      background-color: #fff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      padding: 1.2rem 3.2rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 18px #3b82f6aa;
+      user-select: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: #1e40af;
+      color: white;
+      box-shadow: 0 10px 25px #1e40afcc;
+      outline: none;
+      text-decoration: none;
+    }
+    @media (max-width: 480px) {
+    .hero-content {
+  position: relative;
+  z-index: 1;
+}
+    .hero {
+    padding: 3rem 1rem 4rem 1rem;
+    }
+    .hero h1 {
+    font-size: 2.5rem;
+    
+    }
+    .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    }
+    .btn-primary {
+    font-size: 1.1rem;
+    padding: 0.9rem 2.5rem;
+    }
+          .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+        margin-bottom: 3rem;
+      }
+      .card {
+        min-height: auto;
+      }
+    }
+    }
+
+
+    /* Security: Prevent drag and drop */
+    * {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    }
+    /* Prevent right-click context menu on sensitive elements */
+    img, video {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    }
+    /* Allow interaction with cards */
+    .card {
+    pointer-events: auto;
+    }
+    .card img {
+    pointer-events: none;
+    }
+   .about-section {
+  position: relative;
+  padding: 5rem 2rem;
+  background-color: transparent;
+  overflow: hidden;
+  color: #1f2937;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.about-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Push behind content */
+  opacity: 1; /* Adjust for visibility */
+  pointer-events: none; /* Prevent user interaction */
+}
+
+.about-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.about-video-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.about-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+}
+
+.about-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1D28A0;
+  margin-bottom: 0.5rem;
+}
+
+.about-heading p {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.about-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.about-text, .about-highlights {
+  flex: 1 1 45%;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  color: #374151;
+}
+
+
+/* Responsive */
+.about-content {
+    padding: 1px 0;
+    position: relative;
+    z-index: 2;
+    margin: auto;
+    max-width: 1000px;
+    text-align:center;
+    
+}
+
+.about-text {
+    background: hsla(0,0%,100%,0.5);
+    padding: 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    margin-bottom: 60px;
+    animation: fadeInUp 1s ease-out 0.5s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+}
+
+.about-text h2 {
+    color: #1e40af;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 60px 0;
+}
+
+.stat-card {
+    background: rgb(255, 255, 255,0.5);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease-out both;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity:0.1;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.05) 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.stat-card:hover::before {
+    transform: translateX(0);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1e40af;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+
+.vision-mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 80px 0;
+    overflow-x: auto;
+}
+
+.vision-card, .mission-card {
+    background: rgb(255, 255, 255,0.5);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease-out both;
+    position: relative;
+}
+
+.vision-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+    overflow: clip;
+}
+
+.vision-card h3, .mission-card h3 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #1e40af;
+}
+
+.vision-card p, .mission-card p {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.mission-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.mission-card li {
+    color: #475569;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.mission-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-animation.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    .btn-primary {
+      background-color: #fff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      padding: 1.2rem 3.2rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 18px #3b82f6aa;
+      user-select: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: #1e40af;
+      color: white;
+      box-shadow: 0 10px 25px #1e40afcc;
+      outline: none;
+      text-decoration: none;
+    }
+    /* Section Title */
+    h2.section-title {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      padding-top: 50px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 3rem;
+      text-align: center;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+    .card-container {
+  width: 100%;
+}
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 2.5rem;
+      width:100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-bottom: 4rem;
+    }
+    /* Cards */
+    .card {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      box-shadow: 0 5px 15px rgb(0 0 0 / 0.07);
+      padding: 2rem 2.2rem 2.5rem 2.2rem;
+      cursor: pointer;
+      transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      min-height: 320px;
+      color: #374151;
+      text-align: left;
+      text-decoration: none;
+      will-change: transform;
+      display:flex;
+      flex-direction: column;
+      height:100%;
+    }
+    .card:hover,
+    .card:focus-visible {
+      box-shadow: 0 10px 40px rgb(37 99 235 / 0.3);
+      transform: translateY(-8px) scale(1.03);
+      outline: none;
+      background-color: #e4ebff;
+    }
+    .card img {
+      height: 80px;
+      width: 80px;
+      margin: 0 0 1.25rem 0;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 0.6rem;
+      background: #ffffff;
+      box-shadow: 0 3px 10px rgba(0,123,255,0.15);
+      transition: box-shadow 0.3s ease;
+      display: block;
+    }
+    .card:hover img,
+    .card:focus-visible img {
+      box-shadow: 0 10px 22px rgba(0,123,255,0.5);
+    }
+    .card .card-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #0d1821;
+      user-select: text;
+      line-height: 1.25;
+    }
+    .card .card-description {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #475569;
+      user-select: text;
+      overflow-wrap: break-word;
+      max-height: 72px; /* or another fixed height */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* limits to 3 lines */
+      -webkit-box-orient: vertical;
+    }
+    .card .card-website {
+      margin-top: 1.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
+      letter-spacing: 0;
+    }
+    .card .card-website svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transform: translateY(1px);
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-website svg,
+    .card:focus-visible .card-website svg {
+      transform: translateX(6px) translateY(1px);
+    }
+    .card img {
+      background-color: #f3f4f6;
+      border: 1px solid #e5e7eb;
+    }
+    .card img:not([src]),
+    .card img[src=""] {
+      display: none;
+    }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+.about-graph-placeholder {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: #6b7280;
+  background: rgb(255, 255, 255,0);
+  border-radius: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-grid,
+  .about-vision-mission {
+    flex-direction: column;
+  }
+
+  .about-text, .about-highlights,
+  .about-vision-mission > div {
+    flex: 1 1 100%;
+  }
+}
+
+.chart-container {
+  position: relative;
+  width: 100vw;
+  padding: 2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  background: rgb(255, 255, 255,0.5);
+  border-radius: 1rem;
+  color: #6b7280;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.logo-text {
+        font-size: 1.5rem;
+      }
+.cards-grid {
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+        
+      }
+      .news-section {
+  background: linear-gradient(to right, #f9f9f9, #f3f4f6);
+  padding: 4rem 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
+  padding-top: 3rem;
+  border-top: 2px solid #e5e7eb;
+
+}
+
+.news-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.news-ticker {
+  background: #2563eb;
+  color: white;
+  padding: 0.8rem 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.ticker-text {
+  display: inline-block;
+  animation: scroll-left 15s linear infinite;
+  font-weight: 600;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.news-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.news-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.news-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.news-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.news-card a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* 🎯 Contact Section */
+.contact-section {
+  background: #f4f4f4;
+  padding: 4rem 1rem;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+.contact-container {
+  max-width: 800px;
+  margin: auto;
+}
+.contact-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.contact-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+.contact-form button {
+  background: #2563eb;
+  color: white;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.contact-form button:hover {
+  background: #174ec5;
+}
+
+/* 🧭 Footer */
+.footer {
+  background: #222;
+  color: #ccc;
+  padding: 3rem 1rem;
+  font-size: 0.95rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+.footer h3,
+.footer h4 {
+  color: white;
+  margin-bottom: 1rem;
+}
+.footer a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer a:hover {
+  color: #ffffff;
+}
+.footer-icons a {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.footer-icons a:hover {
+  transform: scale(1.2);
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* ✨ Simple Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: "translateY"(0);
+  }
+}
+
+df-messenger {
+  --df-messenger-button-titlebar-color: #1e40af;
+  --df-messenger-chat-background-color: #ffffff;
+  --df-messenger-font-color: black;
+  --df-messenger-send-icon: #1e40af;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+
+  </style>
+</head>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav role="navigation" aria-label="Main Navigation">
+      <a href="#home" class="logo-container" aria-label="LNCT Group Homepage">
+        <img src="lnct.jpg" alt="LNCT Logo" width="48" height="48" />
+      </a>
+      <div class="menu-toggle" id="menu-toggle" aria-https://lnct.ac.in/wp-content/uploads/2020/08/logo-transparent.png="Toggle menu" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id ="nav-links">
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  
+  <!-- Institutions & Companies Main -->
+  <div class="nav-item">
+    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Institutions & Companies ▾</button>
+    <div class="dropdown-content">
+      
+      <!-- Education Section -->
+      <div class="nav-subitem">
+        <button class="sub-toggle">Education ▾</button>
+        <div class="sub-dropdown">
+          <a href="#desc-jnctbhopal">Jai Narain College of Technology</a>
+          <a href="#desc-lnct">LNCT Bhopal</a>
+          <a href="#desc-lnctu">LNCT University</a>
+          <!-- Add more -->
+          <a href="#desc-jnctpu">JNCT Professional University</a>
+          <a href="#desc-cecbilaspur">CEC Bilaspur</a>
+          <a href="#desc-lnctuj">LNCT University Jabalpur</a>
+          <a href="#desc-lnctworldschools">LNCT World School</a>
+          <a href="#desc-lncte">LNCT Excellence</a>
+          <a href="#desc-lnctbplindorecampus">LNCT (Bhopal) Indore Campus</a>
+          <a href="#desc-lnctrishiraj">LNCT Rishiraj</a>
+          <a href="#desc-ipsbilaspur">IPS Bilaspur</a>
+          <a href="#desc-lnctvu">LNCT Vidhyapeeth University</a>
+          <a href="#desc-indorelnmc">Indore LNMC</a>
+          <a href="#desc-lncps">LNCT Pharmacy & Science</a>
+          <a href="#desc-lncts">LNCT Science</a>
+          <a href="#desc-lnctmca">LNCT MCA</a>
+          <a href="#desc-lnayurvedcollege">LNCT Ayurvedic College</a>
+          <a href="#desc-lncpbhopal">LNCT Pharmacy (Bhopal) </a>
+          <a href="#desc-lnctsopindore">LNCT School of Tech & Science</a>
+          <a href="#desc-clchomeopathy">LNCT Homeopathy College</a>
+          <a href="#desc-lnctuj">LNCT Jabalpur</a>
+        </div>
+      </div>
+      
+      <!-- Business & Industry Section -->
+      <div class="nav-subitem">
+        <button class="sub-toggle">Business & Industry ▾</button>
+        <div class="sub-dropdown">
+          <a href="#desc-jayantjaggery">Jayant Jaggery</a>
+          <a href="#desc-parvatisweetners">Parvati Sweetners</a>
+          <!-- Add more -->
+          <a href="#desc-vitamax">Vitamax</a>
+          <a href="#desc-dabraalcobrew">Dabra Alcobrew</a>
+          <a href="#desc-kalchuricontractors">Kalchuri Contractors</a>
+        <a href="#desc-ananjay">Ananjay</a>
+        <a href="#desc-ananjaypharma">Ananjay Pharma</a>
+        </div>
+      </div>
+      
+      <!-- Support Services -->
+      <div class="nav-subitem">
+        <button class="sub-toggle">Allied & Digital Entities ▾</button>
+        <div class="sub-dropdown">
+          <a href="#desc-lnctguru">LNCT Guru</a>
+          <!-- Add more -->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <a href="#news-events">News & Events</a>
+  <a href="#contact">Contact Us</a>
+  <button id="darkToggle" aria-label="Toggle dark mode">🌓</button>
+</div>
+    </nav>
+    </header>
+
+  <!-- Sample Sections -->
+  <div class="max-w-screen-xl mx-auto px-4">
+    <main>
+    <section id="home" class="hero container" tabindex="-1" aria-label="Hero Section">
+      <div class="hero-content">
+            <div class="logo-pop">
+    </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center leading-snug">LNCT Group of Institutions & Companies</h1>
+        <p class="text-sm sm:text-base lg:text-lg text-center px-4">Educating the Nation. Building the Future.</p>
+        <a class="btn-primary" role="button" href="#institutions">Explore Our Institutions</a>
+      </div>
+    </section>
+      <section id="about" class="py-8 sm:py-12 lg:py-16"class="about-section container" aria-label="About LNCT Group">
+    <div class="about-heading">
+      <h2>About LNCT Group</h2>
+      <p>Empowering Education. Fueling Innovation. Creating Impact.</p>
+    </div>
+    
+    <section id="about" class="about-section">
+                      <video id="about-bg-video" class="about-video" muted autoplay loop playsinline>
+                        <source src="k.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+      <!-- About Content -->
+      
+      <section class="about-content">
+        <div class="container">
+          <!-- About Text -->
+          
+
+          
+          <div class="about-text scroll-animation">
+            <h2>Leading Educational Excellence</h2>
+            <p>LNCT Group of Institutions & Companies was established in 1995 under the U.G. Rashtriya Education Trust by visionary Sri Jai Narain Chouksey. Over the past three decades, it has evolved into a leading educational and industrial conglomerate in Central India.</p>
+            <p>With 30+ institutions and business verticals across Engineering, Medical, Management, Pharmacy, Law, Nursing, and Research, LNCT has educated over 100,000 students and built an alumni network of 50,000+ professionals.</p>
+            <p>Our institutions are recognized for NIRF rankings, ISO 9001:2008 certification, and numerous national-level awards. We host world-class infrastructure, AICTE IDEA labs, innovation hubs, and India's most successful campus placements with offers reaching ₹1 Cr.</p>
+          </div>
+          
+          <!-- Statistics Grid -->
+          <div class="stats-grid">
+            <div class="stat-card scroll-animation">
+              <div class="stat-number counter" data-target="30">0</div>
+              <div class="stat-label">Years of Academic Leadership</div>
+            </div>
+            <div class="stat-card scroll-animation">
+              <div class="stat-number"><span class="counter" data-target="100000">0</span>+</div>
+              <div class="stat-label">Active Students Across Campuses</div>
+            </div>
+            <div class="stat-card scroll-animation">
+              <div class="stat-number"><span class="counter" data-target="260">0</span>+</div>
+              <div class="stat-label">Recruiters including Amazon, Capgemini, Infosys</div>
+            </div>
+            <div class="stat-card scroll-animation">
+              <div class="stat-number"><span class="counter" data-target="180">0</span>+</div>
+              <div class="stat-label">Patents Filed & Published</div>
+            </div>
+            <div class="stat-card scroll-animation">
+              <div class="stat-number"><span class="counter" data-target="191">0</span></div>
+              <div class="stat-label">Ph.D. Faculty Driving Innovation</div>
+            </div>
+            <div class="stat-card scroll-animation">
+              <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
+              <div class="stat-label">Acres of Modern, Wi-Fi Enabled Campuses</div>
+            </div>
+          </div>
+          <!-- Vision & Mission -->
+          <div class="vision-mission">
+            <div class="vision-card scroll-animation">
+              <h3>Our Vision</h3>
+              <p>To nurture responsible leaders, engineers, and professionals through a values-driven, research-oriented, and skill-enhancing education system that prepares them to excel in a rapidly evolving global landscape.</p>
+            </div>
+            <div class="mission-card scroll-animation">
+              <h3>Our Mission</h3>
+              <ul>
+                <li>Deliver industry-aligned, skill-based learning experiences</li>
+                <li>Drive interdisciplinary R&D and entrepreneurship initiatives</li>
+                <li>Foster ethics, sustainability, and social contribution</li>
+                <li>Create globally competitive graduates and innovators</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+              <div class="chart-container" data-aos="fade-up">
+        <canvas id="lnctPlacementChart"></canvas>
+      </div>
+      </section>
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <!-- Your chart component here -->
+        <div class="about-graph-placeholder">
+          <!-- Placeholder for graph or infographics -->
+          <div class="chart-container">
+            <canvas id="lnctInstitutionsChart" aria-label="LNCT Institutions by Domain" role="img"></canvas>
+          </div>
+        </div>
+
+      </section>
+      
+      <!-- Graph Section -->
+      
+      <div style="background: linear-gradient(
+180deg,
+#0f0c29 0%,
+#302b63 40%,
+#24243e 70%,
+#1a1a2e 100%
+);">
+      <section id="institutions" class="container" aria-label="Institutions and Companies Section" tabindex="-1">
+      <h2 class="section-title">Our Institutions &amp; Companies</h2>
+      <input type="text" id="searchBox" placeholder="Search institutions & Companies..." style="margin: 1rem auto; display:block; padding:0.8rem; width:90%; max-width:400px; border-radius:8px; border:1px solid #ccc;" />
+      <div class="cards-grid">
+
+        <!-- 30 cards below with logos, names, descriptions and links -->
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://jnctbhopal.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-jnctbhopal">
+          <img src="g.jpg" alt="JNCT Bhopal Logo" loading="lazy" />
+          <div id="desc-jnctbhopal" class="card-name">JNCT Bhopal</div>
+          <p class="card-description">Jai Narain College of Technology (JNCT) Bhopal is renowned for its engineering and management innovation.</p>
+          <span class="card-website" aria-label="Visit JNCT Bhopal website">Visit Website
+          <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lnct.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnct">
+          <img src="f.png" alt="LNCT Logo" loading="lazy" />
+          <div id="desc-lnct" class="card-name">LNCT</div>
+          <p class="card-description">Lakshmi Narain College of Technology (LNCT) offers premier engineering programs with strong industry ties.</p>
+          <span class="card-website" aria-label="Visit LNCT website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://lnctvu.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctvu">
+          <img src="h.jpg" alt="LNCT Virtual University Logo" loading="lazy" />
+          <div id="desc-lnctvu" class="card-name">LNCT Virtual University</div>
+          <p class="card-description">Distance learning with cutting-edge digital education for accessible and flexible learning.</p>
+          <span class="card-website" aria-label="Visit LNCT Virtual University website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://jnctpu.edu.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-jnctpu">
+          <img src="j.jpg" alt="JNCT PU Logo" loading="lazy" />
+          <div id="desc-jnctpu" class="card-name">JNCT PU</div>
+          <p class="card-description">Pre-university courses preparing students in science, commerce, and arts for higher education success.</p>
+          <span class="card-website" aria-label="Visit JNCT PU website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://jayantjaggery.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-jayantjaggery">
+          <img src="n.png" alt="Jayant Jaggery Logo" loading="lazy" />
+          <div id="desc-jayantjaggery" class="card-name">Jayant Jaggery</div>
+          <p class="card-description">Traditional jaggery products recognized for purity and natural processing for broad market reach.</p>
+          <span class="card-website" aria-label="Visit Jayant Jaggery website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://indorelnmc.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-indorelnmc1">
+          <img src="k.jpg" alt="Indore LNMC Logo" loading="lazy" />
+          <div id="desc-indorelnmc1" class="card-name">Indore LNMC</div>
+          <p class="card-description">Medical and nursing education center with excellent healthcare teaching facilities.</p>
+          <span class="card-website" aria-label="Visit Indore LNMC website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://cecbilaspur.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-cecbilaspur">
+          <img src="i.jpg" alt="CEC Bilaspur Logo" loading="lazy" />
+          <div id="desc-cecbilaspur" class="card-name">CEC Bilaspur</div>
+          <p class="card-description">Engineering college offering technical education and research opportunities in Bilaspur.</p>
+          <span class="card-website" aria-label="Visit CEC Bilaspur website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lncps.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lncps">
+          <img src="l.jpg" alt="LNCPS Logo" loading="lazy" />
+          <div id="desc-lncps" class="card-name">LNCPS</div>
+          <p class="card-description">Professional certification and study programs targeting strategic industry requirements.</p>
+          <span class="card-website" aria-label="Visit LNCPS website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://lnctuj.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctuj">
+          <img src="m.jpg" alt="LNCT UJ Logo" loading="lazy" />
+          <div id="desc-lnctuj" class="card-name">LNCT UJ</div>
+          <p class="card-description">Tech-focused education institution with modern curriculum focusing on innovation.</p>
+          <span class="card-website" aria-label="Visit LNCT UJ website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://lncts.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lncts">
+          <img src="z.jpg" alt="LNCTS Logo" loading="lazy" />
+          <div id="desc-lncts" class="card-name">LNCTS</div>
+          <p class="card-description">Quality education for management and technical studies preparing students for success.</p>
+          <span class="card-website" aria-label="Visit LNCTS website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://kalchuricontractors.ltd" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-kalchuricontractors">
+          <img src="ab.png" alt="Kalchuri Contractors Logo" loading="lazy" />
+          <div id="desc-kalchuricontractors" class="card-name">Kalchuri Contractors</div>
+          <p class="card-description">Construction firm specializing in civil & infrastructure projects with focus on quality and delivery.</p>
+          <span class="card-website" aria-label="Visit Kalchuri Contractors website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://parvatisweetners.co.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-parvatisweetners">
+          <img src="q.jpg" alt="Parvati Sweetners Logo" loading="lazy" />
+          <div id="desc-parvatisweetners" class="card-name">Parvati Sweetners</div>
+          <p class="card-description">Leading producer of sugar and sweetening products, committed to sustainable agriculture and quality assurance.</p>
+          <span class="card-website" aria-label="Visit Parvati Sweetners website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+
+        <a href="https://lnctmca.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctmca">
+          <img src="ad.png" alt="LNCT MCA Logo" loading="lazy" />
+          <div id="desc-lnctmca" class="card-name">LNCT MCA</div>
+          <p class="card-description">Offers computer applications education emphasizing practical skills and industry collaboration.</p>
+          <span class="card-website" aria-label="Visit LNCT MCA website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://vitamax.co.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-vitamax">
+          <img src="u.jpg" alt="Vitamax Logo" loading="lazy" />
+          <div id="desc-vitamax" class="card-name">Vitamax</div>
+          <p class="card-description">Health and nutrition supplements with a focus on quality, safety, and natural ingredients.</p>
+          <span class="card-website" aria-label="Visit Vitamax website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+
+        <a href="https://dabraalcobrew.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-dabraalcobrew">
+          <img src="o.jpg" alt="Dabra Alcobrew Logo" loading="lazy" />
+          <div id="desc-dabraalcobrew" class="card-name">Dabra Alcobrew</div>
+          <p class="card-description">Established brewery producing premium alcoholic beverages and spirits using traditional & innovative methods.</p>
+          <span class="card-website" aria-label="Visit Dabra Alcobrew website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://ipsbilaspur.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-ipsbilaspur">
+          <img src="y.jpg" alt="IPS Bilaspur Logo" loading="lazy" />
+          <div id="desc-ipsbilaspur" class="card-name">IPS Bilaspur</div>
+          <p class="card-description">Reputed educational institution with quality courses and experienced faculty in Bilaspur.</p>
+          <span class="card-website" aria-label="Visit IPS Bilaspur website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lnayurvedcollege.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnayurvedcollege">
+          <img src="v.jpg" alt="LN Ayurved College Logo" loading="lazy" />
+          <div id="desc-lnayurvedcollege" class="card-name">LN Ayurved College</div>
+          <p class="card-description">Health sciences institution focusing on Ayurvedic medicine education, research, and clinical practice.</p>
+          <span class="card-website" aria-label="Visit LN Ayurved College website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://indorelnmc.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-indorelnmc2">
+          <img src="k.jpg" alt="Indore LNMC Logo" loading="lazy" />
+          <div id="desc-indorelnmc2" class="card-name">Indore LNMC</div>
+          <p class="card-description">Medical and nursing education with commitment to quality healthcare and community service.</p>
+          <span class="card-website" aria-label="Visit Indore LNMC website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://ananjay.co.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-ananjay">
+          <img src="w.jpg" alt="Ananjay Logo" loading="lazy" />
+          <div id="desc-ananjay" class="card-name">Ananjay</div>
+          <p class="card-description">Diversified company with ventures in pharmaceuticals, healthcare, focusing on innovation and quality.</p>
+          <span class="card-website" aria-label="Visit Ananjay website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lnctworldschools.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctworldschools">
+          <img src="r.jpg" alt="LNCT World Schools Logo" loading="lazy" />
+          <div id="desc-lnctworldschools" class="card-name">LNCT World Schools</div>
+          <p class="card-description">High-quality K-12 education with modern pedagogy aiming to nurture future-ready individuals.</p>
+          <span class="card-website" aria-label="Visit LNCT World Schools website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <!-- Remaining institutions/companies similarly included below with name, image, description, and external link -->
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://lncpbhopal.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lncpbhopal">
+          <img src="ac.jpg" alt="LNCP Bhopal Logo" loading="lazy" />
+          <div id="desc-lncpbhopal" class="card-name">LNCP Bhopal</div>
+          <p class="card-description">Professional courses and skill development programs empowering students for career growth.</p>
+          <span class="card-website" aria-label="Visit LNCP Bhopal website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://lncte.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lncte">
+          <img src="p.jpg" alt="LNCTE Logo" loading="lazy" />
+          <div id="desc-lncte" class="card-name">LNCTE</div>
+          <p class="card-description">Dedicated to quality teacher education programs creating education leaders of tomorrow.</p>
+          <span class="card-website" aria-label="Visit LNCTE website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lnctbplindorecampus.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctbplindorecampus">
+          <img src="ae.jpg" alt="LNCT BPL Indore Campus Logo" loading="lazy" />
+          <div id="desc-lnctbplindorecampus" class="card-name">LNCT BPL Indore Campus</div>
+          <p class="card-description">Multidisciplinary campus offering modern infrastructure and courses to nurture innovation.</p>
+          <span class="card-website" aria-label="Visit LNCT BPL Indore Campus website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://lnctrishiraj.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctrishiraj">
+          <img src="af.jpg" alt="LNCT Rishiraj Logo" loading="lazy" />
+          <div id="desc-lnctrishiraj" class="card-name">LNCT Rishiraj</div>
+          <p class="card-description">Focused on professional & technical education emphasising research and innovation.</p>
+          <span class="card-website" aria-label="Visit LNCT Trishiraj website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://lnctsopindore.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctsopindore">
+          <img src="ah.jpg" alt="LNCTS OP Indore Logo" loading="lazy" />
+          <div id="desc-lnctsopindore" class="card-name">LNCTS OP Indore</div>
+          <p class="card-description">Industry-aligned management and technology courses for career excellence.</p>
+          <span class="card-website" aria-label="Visit LNCTS OP Indore website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://ananjaypharma.co.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-ananjaypharma">
+          <img src="ag.png" alt="Ananjay Pharma Logo" loading="lazy" />
+          <div id="desc-ananjaypharma" class="card-name">Ananjay Pharma</div>
+          <p class="card-description">Pharmaceutical manufacturer focused on compliance and continuous innovation.</p>
+          <span class="card-website" aria-label="Visit Ananjay Pharma website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-left" data-aos-delay="100">
+        <a href="https://clchomeopathy.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-clchomeopathy">
+          <img src="s.jpg" alt="CLC Homeopathy Logo" loading="lazy" />
+          <div id="desc-clchomeopathy" class="card-name">CLC Homeopathy</div>
+          <p class="card-description">Homeopathy education and research institution empowering students with holistic medicine knowledge.</p>
+          <span class="card-website" aria-label="Visit CLC Homeopathy website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="fade-right" data-aos-delay="100">
+        <a href="https://lnctguru.com" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctguru">
+          <img src="x.jpg" alt="LNCT Guru Logo" loading="lazy" />
+          <div id="desc-lnctguru" class="card-name">LNCT Guru</div>
+          <p class="card-description">E-learning platform with quality video lectures and education resources for students and professionals.</p>
+          <span class="card-website" aria-label="Visit LNCT Guru website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div class="card-container" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://lnctu.ac.in" target="_blank" rel="noopener noreferrer" class="card" aria-describedby="desc-lnctu">
+          <img src="t.jpg" alt="LNCT U Logo" loading="lazy" />
+          <div id="desc-lnctu" class="card-name">LNCT U</div>
+          <p class="card-description">Academic programs with focus on innovation, research, and skill development across multiple disciplines.</p>
+          <span class="card-website" aria-label="Visit LNCT U website">Visit Website
+            <svg viewBox="0 0 24 24"><path d="M19 7L12 14M12 14L5 7M12 14V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        </div>
+        <div style="grid-column: 1 / -1; height: 0;"></div>
+
+  </section>
+  </div>
+  
+<section class="news-section" id="news-events">
+  <h2 class="news-title">📰 Latest News & Events</h2>
+  
+  <div class="news-ticker" id="newsTicker">
+    <span class="ticker-text" id="tickerText">Loading updates...</span>
+  </div>
+  
+  <div class="news-grid" id="newsGrid">
+    <!-- Cards generated dynamically -->
+  </div>
+</section>
+<!-- 🌐 Contact Us Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2 class="contact-title">Get In Touch</h2>
+    <p class="contact-subtitle">We'd love to hear from you! Reach out for admissions, partnerships, or general inquiries.</p>
+
+    <form id="fs-contact"
+      action="https://formspree.io/f/movwwjqy"
+      method="POST"
+      onsubmit="submittedForm(event)"
+      style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 800px; margin: 0 auto;">
+
+  <input type="text" name="name" placeholder="Your Name" required
+         style="padding: 10px; flex: 1 1 250px; border: 1px solid #ccc; border-radius: 5px;">
+
+  <input type="email" name="email" placeholder="Your Email" required
+         style="padding: 10px; flex: 1 1 250px; border: 1px solid #ccc; border-radius: 5px;">
+
+  <textarea name="message" placeholder="Your Message" required
+            style="padding: 10px; flex: 1 1 100%; border: 1px solid #ccc; border-radius: 5px; min-height: 100px;"></textarea>
+
+  <button type="submit"
+          style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Send
+  </button>
+</form>
+
+<script>
+  function submittedForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('fs-contact');
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        alert('✅ Message sent successfully!');
+        form.reset();
+      } else {
+        alert('❌ There was an error. Please try again.');
+      }
+    }).catch(error => {
+      alert('⚠️ Network error. Please check your connection.');
+    });
+  }
+</script>
+    
+  </div>
+</section>
+
+<!-- 🧭 Footer Section -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-about">
+      <h3>LNCT Group</h3>
+      <p>Shaping future-ready leaders through top-notch education, research, and industry collaboration.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#institutions">Institutions</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li>📍 Bhopal, MP, India</li>
+        <li>✉️ info@lnct.ac.in</li>
+        <li>📞 +91-XXX-XXXXXXX</li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="footer-icons">
+        <a href="https://www.instagram.com/lnctgroup/" title="Instagram" target="_blank">📸</a>
+        <a href="https://x.com/lnct_group">🐦</a>
+        <a href="https://www.facebook.com/lnctgroup" title="Facebook" target="_blank">📘</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 LNCT Group. All rights reserved.
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="LnctGroupChatbot"
+  agent-id="140a259c-037f-4e39-bb05-14659cb0fafa"
+  language-code="en"
+></df-messenger>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdowns = document.querySelectorAll(".dropdown-toggle");
+    const subDropdowns = document.querySelectorAll(".sub-toggle");
+    
+    dropdowns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const parent = btn.closest(".nav-item");
+        parent.classList.toggle("open");
+      });
+    });
+    
+    subDropdowns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const parent = btn.closest(".nav-subitem");
+        parent.classList.toggle("open");
+      });
+    });
+    
+    // Smooth scroll to anchor
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  });
+</script>
+  
+  <script>
+  document.querySelectorAll('.sub-dropdown-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const column = button.closest('.sub-dropdown');
+      column.classList.toggle('open');
+    });
+  });
+</script>
+  
+  <script>
+  document.querySelectorAll('.main-dropdown-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const dropdown = button.closest('.dropdown');
+      dropdown.classList.toggle('open');
+    });
+  });
+  
+  // Toggle sub-sections like Education, Business etc.
+  document.querySelectorAll('.sub-dropdown-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const sub = button.closest('.sub-dropdown');
+      sub.classList.toggle('open');
+    });
+  });
+</script>
+
+<script>
+  const toggle = document.getElementById('darkToggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+</script>
+  
+  <script>
+  const video = document.getElementById('about-bg-video');
+  let scrollTimeout;
+  
+  window.addEventListener('scroll', () => {
+    // Play video on scroll
+    if (video.paused) {
+      video.play();
+    }
+    
+    // Clear previous timeout
+    clearTimeout(scrollTimeout);
+    
+    // Set timeout to pause after 150ms of no scroll
+    scrollTimeout = setTimeout(() => {
+      video.pause();
+    }, 150);
+  });
+</script>
+  
+  <script>
+    const ctx = document.getElementById('lnctInstitutionsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Engineering', 'Medical', 'Pharmacy', 'Management', 'Law', 'Nursing', 'Others'],
+        datasets: [{
+          label: 'Number of Institutions',
+          data: [13, 3, 3, 5, 1, 4, 13],
+          backgroundColor: [
+            '#2563eb', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#ef4444', '#14b8a6'
+          ],
+          borderRadius: 8,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'LNCT Group Institutions by Domain',
+            font: { size: 18 }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              precision: 0
+            }
+          }
+        }
+      }
+    });
+  </script>
+  <canvas id="lnctPlacementChart" aria-label="Placement Offers by Year" role="img"></canvas>
+  <script>
+    const placementCtx = document.getElementById('lnctPlacementChart').getContext('2d');
+    
+    new Chart(placementCtx, {
+      type: 'line',
+      data: {
+        labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+        datasets: [{
+          label: 'Placement Offers',
+          data: [2000, 2000, 2000, 3200, 3200, 3500, 3500],
+          fill: true,
+          backgroundColor: 'rgba(37, 99, 235, 0.2)',
+          borderColor: '#2563eb',
+          borderWidth: 3,
+          pointBackgroundColor: '#1e3a8a',
+          tension: 0.3,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'LNCT Group Placement Offers (2018–2024)',
+            font: {
+              size: 18
+            }
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  
+  <script>
+  const searchBox = document.getElementById("searchBox");
+  const cards = document.querySelectorAll(".card-container");
+  
+  searchBox.addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(query) ? "block" : "none";
+    });
+  });
+</script>
+  
+  <script>
+  // Placement Chart
+  new Chart(document.getElementById("lnctPlacementChart"), {
+    type: 'bar',
+    data: {
+      labels: ['2021', '2022', '2023', '2024'],
+      datasets: [{
+        label: 'Placement Offers',
+        data: [2500, 3200, 4100, 5000],
+        backgroundColor: '#2563eb'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'LNCT Placement Trends'
+        }
+      }
+    }
+  });
+  
+  // Institutions Chart
+  new Chart(document.getElementById("lnctInstitutionsChart"), {
+    type: 'doughnut',
+    data: {
+      labels: ['Engineering', 'Medical', 'Pharma', 'Business', 'Law'],
+      datasets: [{
+        data: [12, 6, 5, 4, 3],
+        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Institutions by Domain'
+        }
+      }
+    }
+  });
+</script>
+  
+
+
+<script>
+  const counters = document.querySelectorAll(".counter");
+  counters.forEach(counter => {
+    counter.innerText = "0";
+    const update = () => {
+      const target = +counter.dataset.target;
+      const current = +counter.innerText;
+      const step = Math.ceil(target / 100);
+      if (current < target) {
+        counter.innerText = current + step;
+        setTimeout(update, 30);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    update();
+  });
+</script>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+            // Trigger counter animation
+            const counters = entry.target.querySelectorAll('.counter');
+            counters.forEach(counter => {
+              animateCounter(counter);
+            });
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all scroll animation elements
+      document.querySelectorAll('.scroll-animation').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Counter animation function
+      function animateCounter(counter) {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      }
+      
+      // Add smooth scrolling for better UX
+      document.documentElement.style.scrollBehavior = 'smooth';
+      
+      // Add parallax effect to header
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector('.header');
+        const rate = scrolled * -0.5;
+        header.style.transform = `translateY(${rate}px)`;
+      });
+      
+      // Add hover effect for stat cards
+      document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    });
+  </script>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once:false,
+    duration:1000, 
+    offset:100
+  });
+</script>
+<script>
+const newsData = [
+{
+title: "JNCT Bhopal wins National Robotics Hackathon",
+description: "Students from JNCT secured 1st place in a national robotics hackathon held in Delhi.",
+link: "https://jnctbhopal.ac.in"
+},
+{
+title: "LNCTU launches new AI-ML Department",
+description: "A new AI & Machine Learning department has been inaugurated with state-of-the-art labs.",
+link: "https://lnctu.ac.in"
+},
+{
+title: "Vitamax sets up new distribution hub",
+description: "Vitamax has expanded its supply chain with a new logistics hub in Gujarat.",
+link: "https://vitamax.co.in"
+},
+{
+title: "LNCT World School hosts Inter-State Debate",
+description: "Over 25 schools participated in an intense debate competition hosted by LNCT World School.",
+link: "https://lnctworldschools.com"
+},
+{
+title: "Parvati Sweetners expands to new markets",
+description: "Parvati Sweetners announces new retail presence in Maharashtra and Karnataka.",
+link: "https://parvatisweetners.co.in"
+},
+{
+title: "LNCT Indore OP bags top rank in placements",
+description: "OP campus achieved 95% placement rate in 2024, breaking its previous records.",
+link: "https://lnctsopindore.in"
+}
+];
+
+const tickerHeadlines = [
+"Admissions open for 2024-25 at LNCTU 🎓",
+"Parvati Sweetners IPO launching soon 📈",
+"JNCT Rishiraj gains NAAC 'A' Accreditation 🏆",
+"New courses in AI & Blockchain now available 🧠"
+];
+
+// Populate ticker
+const tickerText = document.getElementById('tickerText');
+tickerText.innerText = tickerHeadlines.join(" • ");
+
+// Populate news cards
+const newsGrid = document.getElementById('newsGrid');
+newsData.forEach((news, index) => {
+const card = document.createElement('div');
+card.className = 'news-card';
+card.style.animationDelay = `${index * 0.2}s`;
+card.innerHTML = `
+<h3>${news.title}</h3>
+<p>${news.description}</p>
+<a href="${news.link}" target="_blank">Read more →</a>
+`;
+newsGrid.appendChild(card);
+});
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
