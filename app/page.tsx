@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import LogoContainer from "@/components/ui/LogoContainer";
 import LNCTLogo from "@/components/assets/LNCT-Logo.png";
 import Image from "next/image";
+import {assets} from "@/components/assets/assets"
 
 import {
   GraduationCap,
@@ -148,264 +149,284 @@ export default function LNCTWebsite() {
 
   const institutions = [
     {
-      name: "LNCT University",
+      name: "LNCT COLLEGE OF TECHNOLOGY, BHOPAL",
       description:
         "Premier university offering diverse programs with industry focus",
       icon: (
-        <LogoContainer className="bg-gradient-to-br from-[#003366] to-blue-600" />
+        <Image
+              src={assets.f}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />
       ),
-      link: "https://www.tailwindcss.com",
+      link: "https://lnct.ac.in",
       color: "from-blue-500 to-blue-600",
     },
     {
-      name: "LNCT College of Engineering",
-      description: "Excellence in engineering education and innovation",
+      name: "LNCT MCA College",
+      description: "Advanced dental education with cutting-edge technology",
       icon: <Image
-              src={LNCTLogo}
+              src={assets.ad}
               alt="lnct logo"
               className="w-full h-40 object-contain "
             />,
-      link: "#",
-      color: "from-indigo-500 to-indigo-600",
+      link: "https://Inctmca.in",
+      color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Business School",
-      description: "Shaping future business leaders and entrepreneurs",
-      icon: <Users className="w-8 h-8" />,
-      link: "#",
-      color: "from-purple-500 to-purple-600",
+      name: " JNCT PROFESSIONAL UNIVERSITY",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.j}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://jnctbhopal.ac.in ",
+      color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Institute of Technology",
-      description: "Innovation in technology education and research",
-      icon: <Lightbulb className="w-8 h-8" />,
-      link: "#",
-      color: "from-teal-500 to-teal-600",
+      name: "LNCT PHARMACY COLLEGE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.ac}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lncpbhopal.in/",
+      color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Medical College",
-      description: "Healthcare education excellence with modern facilities",
-      icon: <Award className="w-8 h-8" />,
-      link: "#",
+      name: "LNCT INDORE CAMPUS COLLEGE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.ae}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://www.lnctindore.com/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT SWABHIMAN SWALAMBAN COLLEGE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.af}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnct.ac.in/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT PROFESSIONAL STUDIES, INDORE COLLEGE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.ah}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctgroup.in/lncps-indore",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "JAINARAIN COLLEGE OF TECHNOLOGY, BHOPAL ",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.g}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://www.jnctbhopal.ac.in/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT VIDHYAPEETH, INDORE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.h}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctvu.ac.in/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "CHOUKSEY ENGINEERING COLLEGE ",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.i}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://cecbilaspur.ac.in/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "L.N. MEDICAL COLLEGE & RESEARCH CENTER, BHOPAL",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.k}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctu.ac.in",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "JAYANTI JAGGERY ",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.n}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://jayantjaggery.com",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "ALCOBREW",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.o}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://dabraalcobrew.com",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LAKSHMI NARAIN COLLEGE OF TECHNOLOGY EXCELLENCE, BHOPAL",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.p}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnct.ac.in/lnct-excellence-college/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "PSPL",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.q}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctu.ac.in/school-of-paramedical-science/",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT WORLD SCHOOL",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.r}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctworldschools.com",
+      color: "from-black-500 to-black-600",
+    },
+    {
+      name: "CLCHOMEOPATHY",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.s}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://clchomeopathy.in",
       color: "from-green-500 to-green-600",
     },
     {
-      name: "LNCT Dental College",
+      name: "LNCT UNIVERSITY",
       description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
+      icon: <Image
+              src={assets.t}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://Inctu.ac.in",
+      color: "from-black-500 to-black-600",
+    },
+    {
+      name: "VITAMAX",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.u}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://vitamax.co.in",
+      color: "from-red-800 to-gray-600",
+    },
+    {
+      name: "L.N. AYURVED COLLEGE & HOSPITAL",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.v}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://Inayurvedcollege.com",
       color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Dental College",
+      name: "ANANJAY",
       description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
+      icon: <Image
+              src={assets.w}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://ananjay.co.in",
+      color: "from-blue-500 to-green-600",
+    },
+    {
+      name: "LNCT GURU",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Image
+              src={assets.x}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lnctguru.com",
       color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Dental College",
+      name: "IPS ",
       description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
+      icon:<Image
+              src={assets.y}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://ipsbilaspur.com",
+      color: "from-white-500 to-orange-600",
+    },
+    {
+      name: "LAKSHMI NARAIN COLLEGE OF TECHNOLOGY SCIENCE, INDORE",
+      description: "Advanced dental education with cutting-edge technology",
+      icon:<Image
+              src={assets.z}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://lncts.in",
       color: "from-orange-500 to-orange-600",
     },
     {
-      name: "LNCT Dental College",
+      name: "KCL KALCHURI CONTRACTORS",
       description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
+      icon: <Image
+              src={assets.ab}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
+      link: "https://kalchuricontractors.ltd",
       color: "from-orange-500 to-orange-600",
     },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      name: "LNCT Dental College",
-      description: "Advanced dental education with cutting-edge technology",
-      icon: <Star className="w-8 h-8" />,
-      link: "#",
-      color: "from-orange-500 to-orange-600",
-    },
+    
   ];
 
   const timelineEvents = [
