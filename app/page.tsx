@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import LogoContainer from "@/components/ui/LogoContainer";
+import LNCTLogo from "@/components/assets/LNCT-Logo.png";
+import Image from "next/image";
+
 import {
   GraduationCap,
   Users,
@@ -26,24 +30,26 @@ import {
   X,
   ExternalLink,
   ArrowRight,
-} from "lucide-react"
-import { useState } from "react"
+} from "lucide-react";
+import { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function LNCTWebsite() {
-  const heroRef = useRef<HTMLElement>(null)
-  const aboutRef = useRef<HTMLElement>(null)
-  const institutionsRef = useRef<HTMLElement>(null)
-  const whyChooseRef = useRef<HTMLElement>(null)
-  const contactRef = useRef<HTMLElement>(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const heroRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const institutionsRef = useRef<HTMLElement>(null);
+  const whyChooseRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
     // Hero animations with improved timing
-    const tl = gsap.timeline({ delay: 0.5 })
+    const tl = gsap.timeline({ delay: 0.5 });
     tl.from(".hero-logo", {
       duration: 0.8,
       scale: 0,
@@ -58,7 +64,7 @@ export default function LNCTWebsite() {
           opacity: 0,
           ease: "power4.out",
         },
-        "-=0.3",
+        "-=0.3"
       )
       .from(
         ".hero-subtitle",
@@ -68,7 +74,7 @@ export default function LNCTWebsite() {
           opacity: 0,
           ease: "power3.out",
         },
-        "-=0.6",
+        "-=0.6"
       )
       .from(
         ".hero-buttons",
@@ -79,8 +85,8 @@ export default function LNCTWebsite() {
           scale: 0.9,
           ease: "power3.out",
         },
-        "-=0.4",
-      )
+        "-=0.4"
+      );
 
     // About timeline animation with enhanced effects
     gsap.from(".timeline-item", {
@@ -95,10 +101,10 @@ export default function LNCTWebsite() {
       rotationX: 15,
       stagger: 0.2,
       ease: "power3.out",
-    })
+    });
 
     // Institutions cards with improved stagger
- 
+
     // Why choose features with slide-in effect
     gsap.from(".feature-card", {
       scrollTrigger: {
@@ -111,7 +117,7 @@ export default function LNCTWebsite() {
       opacity: 0,
       stagger: 0.2,
       ease: "power3.out",
-    })
+    });
 
     // Contact section with enhanced animation
     gsap.from(".contact-item", {
@@ -126,32 +132,39 @@ export default function LNCTWebsite() {
       y: 40,
       stagger: 0.15,
       ease: "back.out(1.4)",
-    })
+    });
 
     // Enhanced navbar scroll effect
     ScrollTrigger.create({
       trigger: "body",
       start: "top -100",
-      end: "bottom top"
-    })
+      end: "bottom top",
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const institutions = [
     {
       name: "LNCT University",
-      description: "Premier university offering diverse programs with industry focus",
-      icon: <GraduationCap className="w-8 h-8" />,
-      link: "#",
+      description:
+        "Premier university offering diverse programs with industry focus",
+      icon: (
+        <LogoContainer className="bg-gradient-to-br from-[#003366] to-blue-600" />
+      ),
+      link: "https://www.tailwindcss.com",
       color: "from-blue-500 to-blue-600",
     },
     {
       name: "LNCT College of Engineering",
       description: "Excellence in engineering education and innovation",
-      icon: <Building className="w-8 h-8" />,
+      icon: <Image
+              src={LNCTLogo}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />,
       link: "#",
       color: "from-indigo-500 to-indigo-600",
     },
@@ -183,7 +196,217 @@ export default function LNCTWebsite() {
       link: "#",
       color: "from-orange-500 to-orange-600",
     },
-  ]
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+    {
+      name: "LNCT Dental College",
+      description: "Advanced dental education with cutting-edge technology",
+      icon: <Star className="w-8 h-8" />,
+      link: "#",
+      color: "from-orange-500 to-orange-600",
+    },
+  ];
 
   const timelineEvents = [
     {
@@ -216,68 +439,137 @@ export default function LNCTWebsite() {
       description: "Milestone achievement in educational excellence",
       icon: <GraduationCap className="w-6 h-6" />,
     },
-  ]
+  ];
 
   const features = [
     {
       title: "Industry-Focused Programs",
-      description: "Curriculum designed with real-world industry requirements and latest technological trends",
+      description:
+        "Curriculum designed with real-world industry requirements and latest technological trends",
       icon: <Target className="w-10 h-10" />,
       color: "from-blue-500 to-cyan-500",
     },
     {
       title: "Top Recruiters",
-      description: "Strong partnerships with leading global companies ensuring excellent placement opportunities",
+      description:
+        "Strong partnerships with leading global companies ensuring excellent placement opportunities",
       icon: <Globe className="w-10 h-10" />,
       color: "from-purple-500 to-pink-500",
     },
     {
       title: "Modern Campus",
-      description: "State-of-the-art facilities, laboratories, and infrastructure for comprehensive learning",
+      description:
+        "State-of-the-art facilities, laboratories, and infrastructure for comprehensive learning",
       icon: <Building className="w-10 h-10" />,
       color: "from-green-500 to-teal-500",
     },
     {
       title: "Research Excellence",
-      description: "Cutting-edge research programs and innovation centers driving technological advancement",
+      description:
+        "Cutting-edge research programs and innovation centers driving technological advancement",
       icon: <BookOpen className="w-10 h-10" />,
       color: "from-orange-500 to-red-500",
     },
-  ]
+  ];
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      const navbar = document.querySelector(".navbar") as HTMLElement
-      const navbarHeight = navbar?.offsetHeight || 80
-      const targetPosition = element.offsetTop - navbarHeight
+      const navbar = document.querySelector(".navbar") as HTMLElement;
+      const navbarHeight = navbar?.offsetHeight || 80;
+      const targetPosition = element.offsetTop - navbarHeight;
 
       window.scrollTo({
         top: targetPosition,
         behavior: "smooth",
-      })
+      });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
+
+  const ContactForm = () => {
+    const [state, handleSubmit] = useForm("mjkrrwzr"); // Replace "mjkrrwzr" with your Formspree form ID
+
+    if (state.succeeded) {
+      return (
+        <p className="text-center text-lg font-semibold text-green-600">
+          Thanks for your message! We'll get back to you soon.
+        </p>
+      );
+    }
+
+    return (
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label htmlFor="name" className="block text-lg font-medium text-gray-700">
+            Your Full Name
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Your Full Name"
+            className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+            Your Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300 w-full"
+          />
+          <ValidationError prefix="Email" field="email" errors={state.errors} />
+        </div>
+        <div>
+          <label htmlFor="subject" className="block text-lg font-medium text-gray-700">
+            Subject
+          </label>
+          <input
+            id="subject"
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="message" className="block text-lg font-medium text-gray-700">
+            Your Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows={6}
+            placeholder="Your Message"
+            className="rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 py-4 resize-none transition-all duration-300 w-full"
+          />
+          <ValidationError prefix="Message" field="message" errors={state.errors} />
+        </div>
+        <Button
+          type="submit"
+          disabled={state.submitting}
+          className="w-full h-14 bg-gradient-to-r from-[#003366] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+        >
+          Send Message
+          <ArrowRight className="w-5 h-5 ml-2" />
+        </Button>
+      </form>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Enhanced Navigation */}
-      <nav className="navbar fixed top-0 w-full z-50 transition-all duration-300 ease-out">
+      <nav className="navbar fixed top-0 w-full z-50 transition-all duration-300 ease-out ">
         <div className="   mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#003366] to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <GraduationCap className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-[#003366] tracking-tight">LNCT</span>
-                <div className="text-xs text-gray-600 font-medium">Group of Institutions</div>
-              </div>
-            </div>
-
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center justify-start space-x-8">
               {[
                 { label: "Home", id: "home" },
                 { label: "About", id: "about" },
@@ -293,26 +585,32 @@ export default function LNCTWebsite() {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#003366] to-blue-600 transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ))}
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="bg-[#003366] hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                Get Started
-              </Button>
             </div>
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="bg-[#003366] hover:bg-blue-700 text-white px-6 py-2 hidden lg:flex rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get Started
+            </Button>
 
             {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors duration-200"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6 text-[#003366]" /> : <Menu className="w-6 h-6 text-[#003366]" />}
-            </button>
+            <div className="lg:hidden flex justify-end w-full">
+              <button
+                className="p-2 rounded-xl hover:bg-gray-100 transition-colors duration-200"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6 text-[#003366]" />
+                ) : (
+                  <Menu className="w-6 h-6 text-[#003366]" />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Enhanced Mobile Menu */}
           {isMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-xl">
+            <div className="lg:hidden absolute top-full right-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-xl">
               <div className="container mx-auto px-4 py-6">
                 <div className="flex flex-col space-y-4">
                   {[
@@ -360,21 +658,30 @@ export default function LNCTWebsite() {
         </div>
 
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="hero-logo mb-8">
-            <div className="w-24 h-24 bg-white/20 rounded-3xl flex items-center justify-center mx-auto backdrop-blur-sm">
+          <div className=" mb-8">
+            <Image
+              src={LNCTLogo}
+              alt="lnct logo"
+              className="w-full h-40 object-contain "
+            />
+            {/* <LogoContainer className=" h-40  flex items-center justify-center mx-auto " /> */}
+            {/* <div className="w-48 h-24 bg-white/20 rounded-3xl flex items-center justify-center mx-auto backdrop-blur-sm">
               <GraduationCap className="w-12 h-12 text-white" />
-            </div>
+            </div> */}
           </div>
 
           <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Welcome to{" "}
-            <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">LNCT Group</span>
+            <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
+              LNCT Group
+            </span>
             <br />
             of Institutions
           </h1>
 
           <p className="hero-subtitle text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Empowering education, fostering innovation, and achieving excellence since 1993
+            Empowering education, fostering innovation, and achieving excellence
+            since 1993
           </p>
 
           <div className="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -399,12 +706,19 @@ export default function LNCTWebsite() {
       </section>
 
       {/* Enhanced About Us Section */}
-      <section id="about" ref={aboutRef} className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section
+        id="about"
+        ref={aboutRef}
+        className="py-24 bg-gradient-to-br from-gray-50 to-blue-50"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">Our Journey</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">
+              Our Journey
+            </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Three decades of educational excellence, innovation, and unwavering commitment to student success
+              Three decades of educational excellence, innovation, and
+              unwavering commitment to student success
             </p>
           </div>
 
@@ -422,21 +736,33 @@ export default function LNCTWebsite() {
                 >
                   <div
                     className={`w-full md:w-5/12 ${
-                      index % 2 === 0 ? "md:text-right md:pr-12" : "md:text-left md:pl-12"
+                      index % 2 === 0
+                        ? "md:text-right md:pr-12"
+                        : "md:text-left md:pl-12"
                     }`}
                   >
                     <Card className="p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white border-0 rounded-3xl w-full max-w-md">
                       <CardContent className="p-0">
                         <div
-                          className={`flex items-center gap-4 mb-4 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"}`}
+                          className={`flex items-center gap-4 mb-4 ${
+                            index % 2 === 0
+                              ? "md:justify-end"
+                              : "md:justify-start"
+                          }`}
                         >
                           <div className="w-12 h-12 bg-gradient-to-br from-[#003366] to-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
                             {event.icon}
                           </div>
-                          <span className="text-3xl font-bold text-[#003366]">{event.year}</span>
+                          <span className="text-3xl font-bold text-[#003366]">
+                            {event.year}
+                          </span>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 text-center md:text-left">{event.event}</h3>
-                        <p className="text-gray-600 leading-relaxed text-center md:text-left">{event.description}</p>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 text-center md:text-left">
+                          {event.event}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed text-center md:text-left">
+                          {event.description}
+                        </p>
                       </CardContent>
                     </Card>
                   </div>
@@ -453,41 +779,71 @@ export default function LNCTWebsite() {
       </section>
 
       {/* Enhanced Institutions Grid */}
-      <section id="institutions" ref={institutionsRef} className="py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">Our Institutions</h2>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our diverse range of world-class educational institutions
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {institutions.map((institution, index) => (
-              <Card
-                key={index}
-                className="institution-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-0 shadow-lg bg-white rounded-3xl overflow-hidden"
-              >
-                <CardContent className="p-8 text-center h-full flex flex-col">
-                  <div
-                    className={`w-20 h-20 bg-gradient-to-br ${institution.color} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl`}
-                  >
-                    <div className="text-white">{institution.icon}</div>
-                  </div>
-                  <h3 className="text-xl font-bold text-[#003366] mb-4 group-hover:text-blue-600 transition-colors">
-                    {institution.name}
-                  </h3>
-                  <p className="text-gray-600 mb-8 flex-grow leading-relaxed">{institution.description}</p>
-                  <Button className="bg-gradient-to-r from-[#003366] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
-                    Learn More
-                    <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+       <section
+      id="institutions"
+      ref={institutionsRef}
+      className="py-24 bg-white"
+    >
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">
+            Our Institutions
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover our diverse range of world-class educational institutions
+          </p>
         </div>
-      </section>
+    
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {institutions.slice(0, visibleCount).map((institution, index) => (
+            <Card
+              key={index}
+              className="institution-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-0 shadow-lg bg-white rounded-3xl overflow-hidden"
+            >
+              <CardContent className="p-8 text-center h-full flex flex-col">
+                <div
+                  className={`w-20 h-20 bg-gradient-to-br ${institution.color} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl`}
+                >
+                  <div className="text-white">{institution.icon}</div>
+                </div>
+                <h3 className="text-xl font-bold text-[#003366] mb-4 group-hover:text-blue-600 transition-colors">
+                  {institution.name}
+                </h3>
+                <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+                  {institution.description}
+                </p>
+                <a
+                  as="a"
+                href={institution.link}
+                target="_blank" // Optional: Opens the link in a new tab
+                rel="noopener noreferrer" // Security best practice for external links
+                 >
+                <Button
+
+  className="bg-gradient-to-r from-[#003366] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+>
+
+  Learn More
+  <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+</Button>
+  </a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+    
+        {visibleCount < institutions.length && (
+          <div className="text-center mt-12">
+            <Button
+              onClick={() => setVisibleCount(visibleCount + 6)}
+              className="bg-[#003366] hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Show More
+            </Button>
+          </div>
+        )}
+      </div>
+    </section>
 
       {/* Enhanced Why Choose LNCT */}
       <section
@@ -501,9 +857,12 @@ export default function LNCTWebsite() {
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Why Choose LNCT?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Why Choose LNCT?
+            </h2>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Excellence in education with an industry-focused approach and commitment to innovation
+              Excellence in education with an industry-focused approach and
+              commitment to innovation
             </p>
           </div>
 
@@ -528,12 +887,19 @@ export default function LNCTWebsite() {
       </section>
 
       {/* Enhanced Contact Section */}
-      <section id="contact" ref={contactRef} className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section
+        id="contact"
+        ref={contactRef}
+        className="py-24 bg-gradient-to-br from-gray-50 to-blue-50"
+      >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">Get in Touch</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-[#003366] mb-6">
+              Get in Touch
+            </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to start your educational journey with us? We're here to help you every step of the way
+              Ready to start your educational journey with us? We're here to
+              help you every step of the way
             </p>
           </div>
 
@@ -584,39 +950,10 @@ export default function LNCTWebsite() {
             {/* Enhanced Contact Form */}
             <Card className="contact-item shadow-2xl border-0 rounded-3xl bg-white">
               <CardContent className="p-10">
-                <h3 className="text-2xl font-bold text-[#003366] mb-8 text-center">Send us a Message</h3>
-                <form className="space-y-6">
-                  <div>
-                    <Input
-                      placeholder="Your Full Name"
-                      className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300"
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Your Email Address"
-                      className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300"
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="Subject"
-                      className="h-14 rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 transition-all duration-300"
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="Your Message"
-                      rows={6}
-                      className="rounded-2xl border-2 border-gray-200 focus:border-[#003366] text-lg px-6 py-4 resize-none transition-all duration-300"
-                    />
-                  </div>
-                  <Button className="w-full h-14 bg-gradient-to-r from-[#003366] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    Send Message
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </form>
+                <h3 className="text-2xl font-bold text-[#003366] mb-8 text-center">
+                  Send us a Message
+                </h3>
+                <ContactForm />
               </CardContent>
             </Card>
           </div>
@@ -639,11 +976,14 @@ export default function LNCTWebsite() {
                 </div>
                 <div>
                   <span className="text-2xl font-bold">LNCT</span>
-                  <div className="text-sm text-blue-200">Group of Institutions</div>
+                  <div className="text-sm text-blue-200">
+                    Group of Institutions
+                  </div>
                 </div>
               </div>
               <p className="text-blue-100 leading-relaxed text-lg">
-                Empowering minds, shaping futures, and building tomorrow's leaders since 1993.
+                Empowering minds, shaping futures, and building tomorrow's
+                leaders since 1993.
               </p>
             </div>
 
@@ -672,22 +1012,34 @@ export default function LNCTWebsite() {
               <h3 className="text-xl font-bold mb-6">Our Institutions</h3>
               <ul className="space-y-3 text-blue-100">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">
+                  <a
+                    href="#"
+                    className="hover:text-white transition-colors duration-200"
+                  >
                     LNCT University
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">
+                  <a
+                    href="#"
+                    className="hover:text-white transition-colors duration-200"
+                  >
                     Engineering College
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">
+                  <a
+                    href="#"
+                    className="hover:text-white transition-colors duration-200"
+                  >
                     Business School
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200">
+                  <a
+                    href="#"
+                    className="hover:text-white transition-colors duration-200"
+                  >
                     Medical College
                   </a>
                 </li>
@@ -715,11 +1067,12 @@ export default function LNCTWebsite() {
 
           <div className="border-t border-blue-700/50 pt-8 text-center">
             <p className="text-blue-100 text-lg">
-              © {new Date().getFullYear()} LNCT Group of Institutions. All rights reserved.
+              © {new Date().getFullYear()} LNCT Group of Institutions. All
+              rights reserved.
             </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
